@@ -19,11 +19,9 @@ const defaultState = {
 };
 
 // Store always takes a root reducer, and takes a default state
-const store = createStore(rootReducer, defaultState, enhancers);
+const store = createStore(rootReducer, defaultState,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
-const enhancers = compose(
-window.devToolsExtension ? window.devToolsExtension() : f => f
-);
 
 // we export history because we need it in `reduxstagram.js` to feed into <Router>
 export const history = syncHistoryWithStore(browserHistory, store);
