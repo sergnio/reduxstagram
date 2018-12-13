@@ -12,6 +12,8 @@
 
  */
 
+// An action, simply put, is just an object with information about what happened and what
+// should change.
 
 // Want to send as little information as possible
 /**
