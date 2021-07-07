@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { browserHistory } from 'react-router'
 import rootReducer from './reducers/index';
@@ -18,11 +18,10 @@ const defaultState = {
   comments
 };
 
-const enhancers = compose(
-  window.devToolsExtension ? window.devToolsExtension() : f => f
-);
+// Store always takes a root reducer, and takes a default state
+const store = createStore(rootReducer, defaultState,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
-const store = createStore(rootReducer, defaultState, enhancers);
 
 // we export history because we need it in `reduxstagram.js` to feed into <Router>
 export const history = syncHistoryWithStore(browserHistory, store);
